@@ -9,7 +9,6 @@ const router = express.Router()
 
 router.get('/api/users/currentuser', currentUser)
 
-
 router.post('/api/users/signin', validateSignUp, validateRequest, signIn)
 
 router.post('/api/users/signup', validateSignUp, validateRequest, signUp)

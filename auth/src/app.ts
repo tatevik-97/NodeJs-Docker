@@ -5,8 +5,6 @@ import {router} from "./api/routes";
 import {ConsoleTransport, createLoggerMiddleware, Logger} from "@voskan/context-aware-logger";
 import {NotFoundError, errorHandler} from "@tatev-97/common";
 
-
-
 const app = express();
 
 const logger = new Logger();
@@ -17,6 +15,8 @@ app.use(createLoggerMiddleware(logger));
 app.use(router);
 
 app.all("*", async () => {
+    console.log('Auth')
+
     throw new NotFoundError()
 });
 

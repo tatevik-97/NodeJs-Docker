@@ -17,6 +17,8 @@ app.use(createLoggerMiddleware(logger));
 app.use(router);
 
 app.all("*", async () => {
+    console.log('Posts')
+
     throw new NotFoundError()
 });
 

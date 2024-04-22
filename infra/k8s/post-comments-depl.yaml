@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: post-comments-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: posts
+      app: post-comments
   template:
     metadata:
       labels:
-        app: posts
+        app: post-comments
     spec:
       containers:
-        - name: posts
-          image: multi-author-blog/posts
+        - name: post-comments
+          image: multi-author-blog/post-comments
           env:
-            - name: POSTS_PORT
-              value: "4000"
+            - name: POST_COMMENTS_PORT
+              value: "5000"
             - name: MONGO_URI
-              value: "mongodb://posts-mongo-srv:27017/posts"
+              value: "mongodb://post-comments-mongo-srv:27017/post-comments"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-srv
+  name: post-comments-srv
 spec:
   selector:
-    app: posts
+    app: post-comments
   ports:
-    - name: posts
+    - name: post-comments
       protocol: TCP
-      port: 4000
-      targetPort: 4000
+      port: 5000
+      targetPort: 5000
