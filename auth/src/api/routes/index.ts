@@ -1,13 +1,13 @@
 import express from 'express'
 import {signUp} from '../controllers/signup'
 import {signIn} from '../controllers/signin'
-import {currentUser} from '../controllers/currentUser'
-import {validateSignUp} from "../../validate";
-import {validateRequest} from "@tatev-97/common";
+import {currentUserController} from '../controllers/currentUser'
+ import {validateSignUp} from "../../validate";
+import {validateRequest, currentUser} from "@tatev-97/common";
 
 const router = express.Router()
 
-router.get('/api/users/currentuser', currentUser)
+router.get('/api/users/currentuser',currentUser, currentUserController)
 
 router.post('/api/users/signin', validateSignUp, validateRequest, signIn)
 

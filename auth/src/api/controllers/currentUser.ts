@@ -1,18 +1,10 @@
 import {NextFunction, Request, Response} from "express";
-import jwt from "jsonwebtoken";
+import {NotFoundError} from "@tatev-97/common/build";
 
-export const currentUser = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) {
-            return next()
-        }
-        const token = req.headers.authorization.split('Bearer ')[1]
-        const payload = jwt.verify(token, process.env.JWT_KEY!)
-        if (!payload) {
-            return next()
-        }
-        return res.json(payload)
-    } catch (err) {
-        throw err
+export const currentUserController = async (req: Request, res: Response) => {
+    const user = req.currentUser;
+    if(!user){
+        throw new NotFoundError()
     }
-}
+    return res.send(user)
+  }
