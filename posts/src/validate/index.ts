@@ -1,11 +1,14 @@
+
 import {body} from "express-validator";
 
-export const validateSignUp = [
-    body('email')
+export const validateNewPost = [
+    body('title')
         .trim()
-        .isEmail()
-        .withMessage('Email must be valid'),
-    body('password')
+        .isLength({min:5,max:50})
+        .withMessage('Title must be between 5 and 50 charters'),
+
+    body('content')
         .trim()
-        .isLength({min: 7, max: 20})
-        .withMessage('Password must be between 7 and 20 characters')]
+        .isLength({min:5})
+        .withMessage('Content must be at least 5 characters long'),
+]

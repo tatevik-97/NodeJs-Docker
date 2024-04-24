@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
+import jwt from "jsonwebtoken"
 import mongoose from "mongoose";
-
 let mongo: MongoMemoryServer;
 
 beforeAll(async () => {
@@ -29,3 +29,14 @@ afterAll(async () => {
     await mongo.stop()
     await mongoose.connection.close()
 });
+
+
+global.signin = (id?:string)=>{
+    const payload = {
+        id: id || new mongoose.Types.ObjectId().toHexString().trim(),
+        email: "test@test.com"
+
+    }
+const token = jwt.sign(payload, process.env.JWT_KEY as string)
+    return `Bearer ${token}`
+}
