@@ -5,7 +5,7 @@ import {ConsoleTransport, createLoggerMiddleware, Logger} from "@voskan/context-
 import {NotFoundError, errorHandler} from "@tatev-97/common";
 import {createPostsRouters} from "./routes/new";
 import {showPostRouter} from "./routes/show";
-import {getAllPostsRouters} from "./routes/allPosts";
+import {getAllPostsRouter} from "./routes/allPosts";
 import {updatePostRouters} from "./routes/updatePosts";
 
 
@@ -19,7 +19,7 @@ app.use(json());
 app.use(createLoggerMiddleware(logger));
 app.use(createPostsRouters)
 app.use(showPostRouter)
-app.use(getAllPostsRouters)
+app.use(getAllPostsRouter)
 app.use(updatePostRouters)
 
 app.all("*", async () => {
