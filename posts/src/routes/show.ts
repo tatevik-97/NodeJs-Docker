@@ -8,10 +8,8 @@ const router = express.Router()
 router.get("/api/posts/:id",
     async (req:Request,res:Response)=>{
 try{
-    console.log(req.params.id,'req.params.id')
-    const post = await Post.findById(req.params.id)
-console.log(post,'post')
-    if(!post){
+     const post = await Post.findById(req.params.id)
+     if(!post){
         throw new NotFoundError()
     }
      res.send(post)
