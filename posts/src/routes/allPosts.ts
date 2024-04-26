@@ -5,7 +5,7 @@ import { Post } from "../models/post";
 
 const router = express.Router();
 
-router.get("/api/posts", currentUser, validateRequest, async (req: Request, res: Response) => {
+router.get("/api/posts", async (req: Request, res: Response) => {
     try {
         const posts = await Post.find({});
         res.status(200).send(posts);
