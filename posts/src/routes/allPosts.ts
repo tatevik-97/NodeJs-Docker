@@ -1,5 +1,4 @@
- import express from 'express';
-import { currentUser, validateRequest } from "@tatev-97/common";
+import express from 'express';
 import { Request, Response } from "express";
 import { Post } from "../models/post";
 
