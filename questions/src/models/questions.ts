@@ -75,9 +75,9 @@ const postSchema = new mongoose.Schema({
 });
 
 postSchema.statics.build = (attrs: PostAttrs) => {
-    return new Post(attrs);
+    return new Questions(attrs);
 };
 
-const Post = mongoose.model<PostsDoc, PostsModel>('PostComment', postSchema);
+const Questions = mongoose.model<PostsDoc, PostsModel>('PostComment', postSchema);
 
-export { Post };
+export { Questions };

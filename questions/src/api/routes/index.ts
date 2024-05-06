@@ -1,9 +1,9 @@
 import express from 'express'
-import {allPosts} from '../controllers/allPosts'
+import {questions} from '../controllers/questions'
 
 const router = express.Router()
 
-router.get('/api/questions', allPosts)
+router.get('/api/questions', questions)
 
 
 export {router}
