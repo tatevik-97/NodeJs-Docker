@@ -31,4 +31,11 @@ spec:
                 name: post-comments-srv
                 port:
                   number: 5000
+          - path: /api/questions/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: questions-srv
+                port:
+                  number: 6000
 

@@ -32,6 +32,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: multi-author-blog/questions
+      context: questions
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
 portForward:
   - resourceType: Service
     resourceName: auth-srv
@@ -45,3 +53,7 @@ portForward:
     resourceName: post-comments-srv
     port: 5000
     localPort: 5000
+  - resourceType: Service
+    resourceName: questions-srv
+    port: 6000
+    localPort: 6000
