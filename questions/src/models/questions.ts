@@ -5,6 +5,7 @@ interface QuestionsAttrs {
     description: string;
     tags?: string[];
     votes?: number;
+    views?: number;
     answers?: AnswersDoc[];
     author: string;
 }
@@ -22,6 +23,7 @@ interface QuestionsDoc extends mongoose.Document {
     votes: number;
     answers: AnswersDoc[];
     author: string;
+    views: number;
 }
 
 interface QuestionsModel extends mongoose.Model<QuestionsDoc> {
@@ -51,6 +53,7 @@ const questionsSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    views: { type: Number, default: 0 },
     answers: {
         type: [answersSchema],
         default: []
