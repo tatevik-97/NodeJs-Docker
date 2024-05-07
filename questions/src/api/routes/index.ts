@@ -1,9 +1,13 @@
 import express from 'express'
-import {questions} from '../controllers/questions'
+import {addQuestions, getQuestions} from '../controllers/questions'
+import {validateNewQuestion} from "../../validate";
+import {currentUser} from "@tatev-97/common";
 
 const router = express.Router()
 
-router.get('/api/questions', questions)
+router.get('/api/questions/:id', getQuestions)
+router.post('/api/questions',validateNewQuestion, addQuestions)
+
 
 
 export {router}

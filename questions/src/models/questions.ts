@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import {questions} from "../api/controllers/questions";
 
 interface QuestionsAttrs {
     title: string;
@@ -26,7 +25,7 @@ interface QuestionsDoc extends mongoose.Document {
 }
 
 interface QuestionsModel extends mongoose.Model<QuestionsDoc> {
-    build(attrs: QuestionsAttrs): QuestionsDoc;
+    build(attrs:QuestionsAttrs): QuestionsDoc;
 }
 
 const answersSchema = new mongoose.Schema({
