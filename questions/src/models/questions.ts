@@ -1,41 +1,41 @@
 import mongoose from 'mongoose';
+import {questions} from "../api/controllers/questions";
 
-interface PostAttrs {
+interface QuestionsAttrs {
     title: string;
     description: string;
     tags?: string[];
     votes?: number;
-    comments?: CommentDoc[];
+    answers?: AnswersDoc[];
     author: string;
-    views?: number;
 }
 
 
-interface CommentDoc extends mongoose.Document {
+interface AnswersDoc extends mongoose.Document {
     user: string;
     text: string;
 }
 
-interface PostsDoc extends mongoose.Document {
+interface QuestionsDoc extends mongoose.Document {
     title: string;
     description: string;
     tags: string[];
     votes: number;
-    comments: CommentDoc[];
+    answers: AnswersDoc[];
     author: string;
-    views: number;
 }
 
-interface PostsModel extends mongoose.Model<PostsDoc> {
-    build(attrs: PostAttrs): PostsDoc;
+interface QuestionsModel extends mongoose.Model<QuestionsDoc> {
+    build(attrs: QuestionsAttrs): QuestionsDoc;
 }
 
-const commentSchema = new mongoose.Schema({
+const answersSchema = new mongoose.Schema({
     user: { type: String, required: true },
     text: { type: String, required: true },
 });
 
-const postSchema = new mongoose.Schema({
+
+const questionsSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -52,17 +52,13 @@ const postSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    comments: {
-        type: [commentSchema],
+    answers: {
+        type: [answersSchema],
         default: []
     },
     author: {
         type: String,
         required: true
-    },
-    views: {
-        type: Number,
-        default: 0
     }
 }, {
     toJSON: {
@@ -74,10 +70,10 @@ const postSchema = new mongoose.Schema({
     }
 });
 
-postSchema.statics.build = (attrs: PostAttrs) => {
+questionsSchema.statics.build = (attrs: QuestionsAttrs) => {
     return new Questions(attrs);
 };
 
-const Questions = mongoose.model<PostsDoc, PostsModel>('PostComment', postSchema);
+const Questions = mongoose.model<QuestionsDoc, QuestionsModel>('Questions', questionsSchema);
 
 export { Questions };
