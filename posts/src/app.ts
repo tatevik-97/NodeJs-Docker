@@ -16,6 +16,7 @@ const logger = new Logger();
 logger.addTransport(new ConsoleTransport());
 
 app.use(json());
+app.use(express.static("uploads"));
 app.use(createLoggerMiddleware(logger));
 app.use(createPostsRouters)
 app.use(showPostRouter)
