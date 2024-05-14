@@ -3,10 +3,7 @@ import "express-async-errors";
 import {json} from "body-parser";
 import {ConsoleTransport, createLoggerMiddleware, Logger} from "@voskan/context-aware-logger";
 import {NotFoundError, errorHandler} from "@tatev-97/common";
-import {createPostsRouters} from "./routes/new";
-import {showPostRouter} from "./routes/show";
-import {getAllPostsRouter} from "./routes/allPosts";
-import {updatePostRouters} from "./routes/updatePosts";
+import {uploadRouter} from "./routes/upload";
 
 
 
@@ -18,13 +15,10 @@ logger.addTransport(new ConsoleTransport());
 app.use(json());
 app.use(express.static("uploads"));
 app.use(createLoggerMiddleware(logger));
-app.use(createPostsRouters)
-app.use(showPostRouter)
-app.use(getAllPostsRouter)
-app.use(updatePostRouters)
+app.use(uploadRouter)
 
 app.all("*", async () => {
-    console.log('Post')
+    console.log('Upload')
 
     throw new NotFoundError()
 });
